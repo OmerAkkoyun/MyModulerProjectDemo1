@@ -1,21 +1,25 @@
 package com.omerakkoyun.feature.main.navigation
 
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.omerakkoyun.core.navigation.Navigator
 import com.omerakkoyun.core.navigation.Route
-import com.omerakkoyun.feature.main.presentation.MainScreen
+import com.omerakkoyun.feature.home.navigation.homeTabGraph
+import com.omerakkoyun.feature.profile.navigation.profileTabGraph
+import com.omerakkoyun.feature.settings.navigation.settingsTabGraph
 
 /**
  * Created by Omer AKKOYUN on 29.03.2026.
  */
-fun NavGraphBuilder.mainGraph() {
+fun NavGraphBuilder.mainGraph(
+    onNavigate: (Route.Screen) -> Unit
+) {
     navigation(
-        startDestination = Route.Home.nav,
-        route = Route.MainGraph.nav
+        route = Route.Graph.MainGraph.nav,
+        startDestination = Route.Graph.HomeGraph.nav
     ) {
-        composable(Route.Home.nav) {
-            MainScreen()
-        }
+        homeTabGraph()
+        settingsTabGraph(onNavigate = onNavigate)
+        profileTabGraph()
     }
 }

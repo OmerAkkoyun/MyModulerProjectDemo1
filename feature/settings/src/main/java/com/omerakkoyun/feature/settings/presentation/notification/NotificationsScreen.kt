@@ -1,8 +1,5 @@
-package com.omerakkoyun.feature.settings.presentation
+package com.omerakkoyun.feature.settings.presentation.notification
 
-/**
- * Created by Omer AKKOYUN on 28.03.2026.
- */
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,12 +8,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
+/**
+ * Created by Omer AKKOYUN on 30.03.2026.
+ */
 @Composable
-fun SettingsScreen() {
+fun NotificationsScreen() {
     Box(
-        modifier = Modifier.fillMaxSize().background(color = androidx.compose.material3.MaterialTheme.colorScheme.primary),
+        modifier = Modifier.fillMaxSize().background(color = androidx.compose.material3.MaterialTheme.colorScheme.error),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Settings Screen")
+        Text(text = "Notifications Screen")
     }
 }

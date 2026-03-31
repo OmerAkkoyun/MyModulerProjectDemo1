@@ -4,17 +4,19 @@ package com.omerakkoyun.feature.home.navigation
  * Created by Omer AKKOYUN on 28.03.2026.
  */
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import com.omerakkoyun.core.navigation.Navigator
 import com.omerakkoyun.core.navigation.Route
 import com.omerakkoyun.feature.home.presentation.HomeScreen
 
 fun NavGraphBuilder.homeTabGraph() {
     navigation(
-        startDestination = Route.Home.nav,
-        route = Route.HomeGraph.nav
+        startDestination = Route.Screen.HomeScreen.nav,
+        route = Route.Graph.HomeGraph.nav
     ){
-        composable(Route.Home.nav) {
+        composable(Route.Screen.HomeScreen.nav) {
             HomeScreen()
         }
     }

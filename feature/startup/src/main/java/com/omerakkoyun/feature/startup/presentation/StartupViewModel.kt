@@ -19,6 +19,6 @@ import kotlinx.coroutines.flow.update
         fun testGoMain() {
             // Complete onboarding and go to HomeGraph (root of main feature)
             // Using clearBackStack so onboarding cannot be re-entered via back button.
-            navigator.replace(Route.MainGraph)
+            navigator.replace(Route.Graph.MainGraph)
         }
     }

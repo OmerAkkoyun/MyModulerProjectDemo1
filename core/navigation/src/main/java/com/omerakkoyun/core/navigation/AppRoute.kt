@@ -8,51 +8,70 @@ package com.omerakkoyun.core.navigation
 sealed interface Route {
     val nav: String
 
-    // graphs
-    data object StartupGraph : Route {
-        override val nav = "startup_graph"
+    sealed interface Graph : Route {
+        data object RootGraph : Graph {
+            override val nav: String = "root_graph"
+        }
+
+        data object StartupGraph : Graph {
+            override val nav: String = "startup_graph"
+        }
+
+        data object MainGraph : Graph {
+            override val nav: String = "main_graph"
+        }
+
+        data object HomeGraph : Graph {
+            override val nav: String = "home_graph"
+        }
+
+        data object SettingsGraph : Graph {
+            override val nav: String = "settings_graph"
+        }
+
+        data object ProfileGraph : Graph {
+            override val nav: String = "profile_graph"
+        }
     }
 
-    data object AuthGraph : Route {
-        override val nav = "auth_graph"
+    sealed interface Screen : Route {
+        data object StartupScreen : Screen {
+            override val nav: String = "startup"
+        }
+
+        data object HomeScreen : Screen {
+            override val nav: String = "home"
+        }
+
+        data object SettingsScreen : Screen {
+            override val nav: String = "settings"
+        }
+
+        data object AccountScreen : Screen {
+            override val nav: String = "account"
+        }
+
+        data object Notifications : Screen {
+            override val nav: String = "notifications"
+        }
+
+        data object ProfileScreen : Screen {
+            override val nav: String = "profile"
+        }
     }
 
-    data object MainGraph : Route {
-        override val nav = "main_graph"
-    }
+    sealed interface TopLevel : Route {
+        data object HomeTab : TopLevel {
+            override val nav: String = Graph.HomeGraph.nav
+        }
 
-    data object HomeGraph : Route {
-        override val nav = "home_graph"
-    }
+        data object SettingsTab : TopLevel {
+            override val nav: String = Graph.SettingsGraph.nav
+        }
 
-    data object SettingsGraph : Route {
-        override val nav = "settings_graph"
-    }
-
-    data object ProfileGraph : Route {
-        override val nav = "profile_graph"
-    }
-
-    // screens
-    data object Startup : Route {
-        override val nav = "startup"
-    }
-
-    data object Login : Route {
-        override val nav = "login"
-    }
-
-    data object Home : Route {
-        override val nav = "home"
-    }
-
-
-    data object Profile : Route {
-        override val nav = "profile"
-    }
-
-    data object Settings : Route {
-        override val nav = "settings"
+        data object ProfileTab : TopLevel {
+            override val nav: String = Graph.ProfileGraph.nav
+        }
     }
 }
 

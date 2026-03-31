@@ -2,6 +2,7 @@ package com.omerakkoyun.mymodulerproject.app
 
 import android.app.Application
 import com.omerakkoyun.core.di.coreNavigationModule
+import com.omerakkoyun.feature.settings.di.featureSettingsModule
 import com.omerakkoyun.feature.startup.di.featureStartupModule
 
 import org.koin.android.ext.koin.androidContext
@@ -17,7 +18,8 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 coreNavigationModule,
-                featureStartupModule
+                featureStartupModule,
+                featureSettingsModule
 
             )
         }

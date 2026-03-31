@@ -1,87 +1,74 @@
 package com.omerakkoyun.mymodulerproject.app.navigation
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.omerakkoyun.core.navigation.NavigationCommands
 import com.omerakkoyun.core.navigation.Navigator
 import com.omerakkoyun.core.navigation.Route
 import com.omerakkoyun.feature.main.navigation.mainGraph
+import com.omerakkoyun.feature.main.presentation.MainContainer
 import com.omerakkoyun.feature.startup.navigation.startupGraph
-
 
 /**
  * Created by Omer AKKOYUN on 28.03.2026.
  */
 
-
 @Composable
-fun AppNavHost(navigator: Navigator, paddingValues: PaddingValues) {
-    val navController = rememberNavController()
+fun AppNavHost(
+    navigator: Navigator,
+    paddingValues: PaddingValues
+) {
+    val navHostController = rememberNavController()
+    val navBackStackEntry by navHostController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(navigator, navHostController) {
         navigator.navigateCommands.collect { command ->
-            when(command){
-                is NavigationCommands.NavigateTo -> {
-                    navController.navigate(command.route.nav)
-                }
-
-                is NavigationCommands.NavigateToRoute -> {
-                    navController.navigate(command.routeString)
-                }
-
-                is NavigationCommands.NavigateToTab -> {
-                    navController.navigate(command.route.nav) {
-                        popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true
-                        }
-                        restoreState = true
-                        launchSingleTop = true
-                    }
-                }
-
-                is NavigationCommands.Replace -> {
-                    navController.navigate(command.route.nav){
-                        popUpTo(navController.graph.id){
-                            inclusive = true
-                        }
-                    }
-                }
-
-                is NavigationCommands.ClearBackStackAndNavigate -> {
-                    navController.navigate(command.route.nav){
-                        popUpTo(navController.graph.id){
-                            inclusive = true
-                        }
-                        launchSingleTop = true
-                    }
-                }
-
-                is NavigationCommands.NavigateUp -> {
-                    navController.navigateUp()
-                }
-
-                is NavigationCommands.PopUpTo -> {
-                    navController.popBackStack(
-                        command.route.nav,
-                        command.inclusive
-                    )
-                }
-
-            }
+            navHostController.handle(command)
         }
     }
 
-    NavHost(
-        navController = navController,
-        startDestination = Route.StartupGraph.nav,
-        route = "root_graph"
-    ){
-        startupGraph()
-        mainGraph()
+    MainContainer(
+        currentDestination = currentDestination,
+        showBottomBar = currentDestination.shouldShowBottomBar(),
+        onTabSelected = { item ->
+            navHostController.navigate(item.route.nav) {
+                popUpTo(navHostController.graph.findStartDestination().id) {
+                    saveState = true
+                }
+                launchSingleTop = true
+                restoreState = true
+            }
+        },
+        modifier = Modifier.padding(top = paddingValues.calculateTopPadding())
+    ) {  ->
+        NavHost(
+            navController = navHostController,
+            startDestination = Route.Graph.StartupGraph.nav,
+            route = Route.Graph.RootGraph.nav
+        ) {
+            startupGraph()
+            mainGraph( onNavigate = { routeScreen ->
+                navHostController.navigate(routeScreen.nav)
+            })
+        }
     }
+}
 
+private fun NavDestination?.shouldShowBottomBar(): Boolean {
+    return when (this?.route) {
+        Route.Screen.HomeScreen.nav,
+        Route.Screen.SettingsScreen.nav,
+        Route.Screen.Notifications.nav,
+        Route.Screen.ProfileScreen.nav -> true
+        else -> false
+    }
 }

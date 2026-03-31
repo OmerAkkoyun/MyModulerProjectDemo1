@@ -11,10 +11,10 @@ import com.omerakkoyun.feature.startup.presentation.StartupScreen
  */
 fun NavGraphBuilder.startupGraph() {
     navigation(
-        startDestination = Route.Startup.nav,
-        route = Route.StartupGraph.nav
+        startDestination = Route.Screen.StartupScreen.nav,
+        route = Route.Graph.StartupGraph.nav
     ){
-        composable(Route.Startup.nav) {
+        composable(Route.Screen.StartupScreen.nav) {
             StartupScreen()
         }
     }
