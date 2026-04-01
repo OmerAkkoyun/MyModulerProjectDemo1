@@ -11,22 +11,23 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.omerakkoyun.core.navigation.Navigator
 import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.feature.settings.presentation.uimodel.LanguageUiModel
 
 /**
  * Created by Omer AKKOYUN on 1.04.2026.
  */
 @Composable
-fun LanguageScreen(navigator: Navigator) {
+fun LanguageScreen(uiModel: LanguageUiModel,navigator: Navigator) {
     Box(
         modifier = Modifier.fillMaxSize().background(color = androidx.compose.material3.MaterialTheme.colorScheme.error),
         contentAlignment = Alignment.Center
     ) {
         Column {
-            Text(text = "Language Settings", color = androidx.compose.material3.MaterialTheme.colorScheme.onError)
+            Text(text = "data pass -> code: ${uiModel.code}, from settings list screen", color = androidx.compose.material3.MaterialTheme.colorScheme.onError)
             Button( onClick = {
                 navigator.popUpTo(
                     route = Route.Screen.SettingsScreen,
-                    inclusive = false
+                    inclusiveRemoveTargetRoute = false
                 )
             }) {
                 Text(text = "Change Language and Go Settings Main List Screen", color= androidx.compose.material3.MaterialTheme.colorScheme.onPrimary)

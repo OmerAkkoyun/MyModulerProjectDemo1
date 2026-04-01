@@ -14,7 +14,7 @@ import com.omerakkoyun.core.navigation.Route
 private val bottomBarVisibleRoutes = setOf(
     Route.Screen.HomeScreen.nav,
     Route.Screen.SettingsScreen.nav,
-    Route.Screen.ProfileScreen.nav
+    Route.Screen.ProfileScreen.nav,
 )
 
 fun NavDestination?.shouldShowBottomBar(): Boolean {
@@ -28,6 +28,10 @@ fun NavHostController.handle(command: NavigationCommands) {
         }
 
         is NavigationCommands.NavigateByRouteName -> {
+            navigate(command.routeString)
+        }
+
+        is NavigationCommands.NavigateToWithArgs -> {
             navigate(command.routeString)
         }
 
@@ -62,47 +66,3 @@ fun NavHostController.handle(command: NavigationCommands) {
         }
     }
 }
-
-
-//fun NavHostController.handle(command: NavigationCommands){
-//    val navController = this
-//    when(command){
-//        is NavigationCommands.NavigateTo -> {
-//            this.navigate(command.route.nav)
-//        }
-//
-//        is NavigationCommands.NavigateByRouteName -> {
-//            this.navigate(command.routeString)
-//        }
-//
-//        is NavigationCommands.NavigateToTab -> {
-//            this.navigate(command.route.nav) {
-//                popUpTo(navController.graph.findStartDestination().id) {
-//                    saveState = true
-//                }
-//                restoreState = true
-//                launchSingleTop = true
-//            }
-//        }
-//
-//        is NavigationCommands.NavigateAndClearBackStack -> {
-//            this.navigate(command.route.nav){
-//                popUpTo(navController.graph.id){
-//                    inclusive = true
-//                }
-//                launchSingleTop = true
-//            }
-//        }
-//
-//        is NavigationCommands.NavigateUp -> {
-//            this.navigateUp()
-//        }
-//
-//        is NavigationCommands.PopUpTo -> {
-//            this.popBackStack(
-//                command.route.nav,
-//                command.inclusive
-//            )
-//        }
-//    }
-//}

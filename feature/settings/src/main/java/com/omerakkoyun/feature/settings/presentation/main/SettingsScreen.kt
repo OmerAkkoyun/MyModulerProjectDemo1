@@ -22,7 +22,9 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SettingsScreen(
     onAccountClick: () -> Unit,
-    onNotificationsClick: () -> Unit) {
+    onNotificationsClick: () -> Unit,
+    onLanguageClick: () -> Unit
+    ) {
     Box(
         modifier = Modifier.fillMaxSize().background(color = MaterialTheme.colorScheme.primary),
         contentAlignment = Alignment.Center
@@ -47,6 +49,11 @@ fun SettingsScreen(
             SettingsItem(
                 title = "Notifications",
                 onClick = onNotificationsClick
+            )
+
+            SettingsItem(
+                title = "Language",
+                onClick = onLanguageClick
             )
         }
     }

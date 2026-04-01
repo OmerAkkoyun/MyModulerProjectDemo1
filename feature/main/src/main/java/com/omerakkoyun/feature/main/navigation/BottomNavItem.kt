@@ -20,24 +20,24 @@ import com.omerakkoyun.mymodulerproject.feature.main.R
 sealed class BottomNavItem(
     @StringRes val labelRes: Int,
     val icon: ImageVector,
-    val route: Route.TopLevel
+    val route: Route.Graph
 ) {
     data object HomeTab : BottomNavItem(
         labelRes = R.string.bottom_home ,
         icon = Icons.Default.Home,
-        route = Route.TopLevel.HomeTab
+        route = Route.Graph.HomeGraph
     )
 
     data object SettingsTab : BottomNavItem(
         labelRes = R.string.bottom_settings,
         icon = Icons.Default.Settings,
-        route = Route.TopLevel.SettingsTab
+        route = Route.Graph.SettingsGraph
     )
 
     data object ProfileTab : BottomNavItem(
         labelRes = R.string.bottom_profile,
         icon = Icons.Default.Person,
-        route = Route.TopLevel.ProfileTab
+        route = Route.Graph.ProfileGraph
     )
 
     companion object {

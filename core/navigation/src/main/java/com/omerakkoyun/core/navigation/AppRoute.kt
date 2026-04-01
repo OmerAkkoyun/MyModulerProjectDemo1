@@ -39,10 +39,12 @@ sealed interface Route {
             override val nav: String = "startup"
         }
 
+        // Home Screens
         data object HomeScreen : Screen {
             override val nav: String = "home"
         }
 
+        // Settings Screens
         data object SettingsScreen : Screen {
             override val nav: String = "settings"
         }
@@ -55,26 +57,14 @@ sealed interface Route {
             override val nav: String = "notifications"
         }
 
+        data object LanguageScreen : Screen {
+            override val nav: String = "language/{code}"
+            fun buildNav(code: String): String = "language/$code"
+        }
+
+        // Profile Screens
         data object ProfileScreen : Screen {
             override val nav: String = "profile"
-        }
-
-        data object LanguageScreen : Screen {
-            override val nav: String = "language"
-        }
-    }
-
-    sealed interface TopLevel : Route {
-        data object HomeTab : TopLevel {
-            override val nav: String = Graph.HomeGraph.nav
-        }
-
-        data object SettingsTab : TopLevel {
-            override val nav: String = Graph.SettingsGraph.nav
-        }
-
-        data object ProfileTab : TopLevel {
-            override val nav: String = Graph.ProfileGraph.nav
         }
     }
 }

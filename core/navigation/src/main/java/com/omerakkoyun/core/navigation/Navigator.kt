@@ -1,6 +1,5 @@
 package com.omerakkoyun.core.navigation
 
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 
 /**
@@ -13,11 +12,13 @@ interface Navigator {
 
     fun navigateByRouteName(routeString: String)
 
-    fun navigateToTab(route: Route.TopLevel)
+    fun navigateToWithArgs(routeString: String)
+
+    fun navigateToTab(route: Route)
 
     fun navigateUp()
 
-    fun popUpTo(route: Route, inclusive: Boolean)
+    fun popUpTo(route: Route, inclusiveRemoveTargetRoute: Boolean)
 
     fun navigateAndClearBackStack(route: Route)
 

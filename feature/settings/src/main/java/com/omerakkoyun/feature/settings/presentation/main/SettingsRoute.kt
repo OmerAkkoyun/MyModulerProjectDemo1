@@ -23,11 +23,11 @@ fun SettingsRoute(
                 SettingsEffect.NavigateToNotifications ->
                     navigator.navigateTo(Route.Screen.Notifications)
 
-                SettingsEffect.NavigateToTheme ->
-                    navigator.navigateTo(Route.Screen.SettingsScreen)
+                is SettingsEffect.NavigateToLanguage ->
+                    navigator.navigateToWithArgs(
+                        Route.Screen.LanguageScreen.buildNav(effect.code) //  örN: "language/tr"
+                    )
 
-                SettingsEffect.NavigateToKvkk ->
-                    navigator.navigateTo(Route.Screen.SettingsScreen)
             }
         }
     }
@@ -35,7 +35,6 @@ fun SettingsRoute(
     SettingsScreen(
         onAccountClick = viewModel::onAccountClick,
         onNotificationsClick = viewModel::onNotificationsClick,
-//        onThemeClick = viewModel::onThemeClick,
-//        onKvkkClick = viewModel::onKvkkClick
+        onLanguageClick = viewModel::onLanguageClick
     )
 }

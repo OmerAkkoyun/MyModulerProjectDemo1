@@ -38,13 +38,13 @@ fun AccountSettingsScreen(
         AccountItem(title = "Phone", value = "+1 234 567 890")
         AccountItem(title = "Password", value = "********")
         Button(onClick = {
-                navigator.navigateToTab(Route.TopLevel.ProfileTab)
+                navigator.navigateToTab(Route.Graph.ProfileGraph)
         }) {
             Text(text = "Navigate to tab (profile) ")
         }
 
         Button(onClick = {
-                navigator.navigateAndClearBackStack(Route.TopLevel.ProfileTab)
+                navigator.navigateAndClearBackStack(Route.Graph.ProfileGraph)
         }) {
             Text(text = "Navigate to (profile) and clear back stack")
         }

@@ -26,11 +26,16 @@ class SettingsViewModel : ViewModel() {
             _effects.emit(SettingsEffect.NavigateToNotifications)
         }
     }
+
+    fun onLanguageClick() {
+        viewModelScope.launch {
+            _effects.emit(SettingsEffect.NavigateToLanguage("TR"))
+        }
+    }
 }
 
 sealed interface SettingsEffect {
     data object NavigateToAccount : SettingsEffect
     data object NavigateToNotifications : SettingsEffect
-    data object NavigateToTheme : SettingsEffect
-    data object NavigateToKvkk : SettingsEffect
+    data class NavigateToLanguage(val code: String) : SettingsEffect
 }

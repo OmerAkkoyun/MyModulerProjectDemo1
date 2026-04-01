@@ -23,7 +23,11 @@ class NavigatorImpl : Navigator {
         _navigationCommands.tryEmit(NavigationCommands.NavigateByRouteName(routeString))
     }
 
-    override fun navigateToTab(route: Route.TopLevel) {
+    override fun navigateToWithArgs(routeString: String) {
+        _navigationCommands.tryEmit(NavigationCommands.NavigateToWithArgs(routeString))
+    }
+
+    override fun navigateToTab(route: Route) {
         _navigationCommands.tryEmit(NavigationCommands.NavigateToTab(route))
     }
 
