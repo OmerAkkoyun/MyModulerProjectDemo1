@@ -10,18 +10,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.omerakkoyun.core.navigation.Route
 
 /**
  * Created by Omer AKKOYUN on 28.03.2026.
  */
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onNavigateToX: () -> Unit, onNavigateToY: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize().background(Color.Black),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center) {
         Text("Welcome to Home", color = Color.White)
         Button(onClick = {
-
+            onNavigateToX()
         }) {
             Text("Go to Profile", color = Color.White)
         }

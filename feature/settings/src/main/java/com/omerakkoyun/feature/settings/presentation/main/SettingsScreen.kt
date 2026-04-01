@@ -14,12 +14,10 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.omerakkoyun.feature.settings.navigation.SettingsNavigationAction
-import org.koin.androidx.compose.koinViewModel
+
 
 @Composable
 fun SettingsScreen(

@@ -2,7 +2,8 @@ package com.omerakkoyun.feature.settings.presentation.main
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.omerakkoyun.feature.settings.navigation.SettingsNavigationAction
+import com.omerakkoyun.core.navigation.Navigator
+import com.omerakkoyun.core.navigation.Route
 import org.koin.androidx.compose.koinViewModel
 
 /**
@@ -10,23 +11,23 @@ import org.koin.androidx.compose.koinViewModel
  */
 @Composable
 fun SettingsRoute(
-    onNavigate: (SettingsNavigationAction) -> Unit,
+    navigator: Navigator,
     viewModel: SettingsViewModel = koinViewModel()
 ) {
     LaunchedEffect(viewModel) {
         viewModel.effects.collect { effect ->
             when (effect) {
                 SettingsEffect.NavigateToAccount ->
-                    onNavigate(SettingsNavigationAction.Account)
+                    navigator.navigateTo(Route.Screen.AccountScreen)
 
                 SettingsEffect.NavigateToNotifications ->
-                    onNavigate(SettingsNavigationAction.Notifications)
+                    navigator.navigateTo(Route.Screen.Notifications)
 
                 SettingsEffect.NavigateToTheme ->
-                    onNavigate(SettingsNavigationAction.Theme)
+                    navigator.navigateTo(Route.Screen.SettingsScreen)
 
                 SettingsEffect.NavigateToKvkk ->
-                    onNavigate(SettingsNavigationAction.Kvkk)
+                    navigator.navigateTo(Route.Screen.SettingsScreen)
             }
         }
     }

@@ -6,7 +6,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -49,26 +48,14 @@ fun AppNavHost(
             }
         },
         modifier = Modifier.padding(top = paddingValues.calculateTopPadding())
-    ) {  ->
+    ) {
         NavHost(
             navController = navHostController,
             startDestination = Route.Graph.StartupGraph.nav,
             route = Route.Graph.RootGraph.nav
         ) {
             startupGraph()
-            mainGraph( onNavigate = { routeScreen ->
-                navHostController.navigate(routeScreen.nav)
-            })
+            mainGraph(navigator)
         }
-    }
-}
-
-private fun NavDestination?.shouldShowBottomBar(): Boolean {
-    return when (this?.route) {
-        Route.Screen.HomeScreen.nav,
-        Route.Screen.SettingsScreen.nav,
-        Route.Screen.Notifications.nav,
-        Route.Screen.ProfileScreen.nav -> true
-        else -> false
     }
 }

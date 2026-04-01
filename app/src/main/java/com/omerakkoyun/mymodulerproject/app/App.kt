@@ -2,6 +2,7 @@ package com.omerakkoyun.mymodulerproject.app
 
 import android.app.Application
 import com.omerakkoyun.core.di.coreNavigationModule
+import com.omerakkoyun.feature.home.di.featureHomeModule
 import com.omerakkoyun.feature.settings.di.featureSettingsModule
 import com.omerakkoyun.feature.startup.di.featureStartupModule
 
@@ -19,7 +20,8 @@ class App : Application() {
             modules(
                 coreNavigationModule,
                 featureStartupModule,
-                featureSettingsModule
+                featureSettingsModule,
+                featureHomeModule
 
             )
         }

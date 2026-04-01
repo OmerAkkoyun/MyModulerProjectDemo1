@@ -4,18 +4,23 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.omerakkoyun.core.navigation.Navigator
+import com.omerakkoyun.core.navigation.Route
 
 /**
  * Created by Omer AKKOYUN on 30.03.2026.
  */
 @Composable
-fun AccountSettingsScreen() {
+fun AccountSettingsScreen(
+    navigator: Navigator
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -32,6 +37,30 @@ fun AccountSettingsScreen() {
         AccountItem(title = "Email", value = "john.doe@example.com")
         AccountItem(title = "Phone", value = "+1 234 567 890")
         AccountItem(title = "Password", value = "********")
+        Button(onClick = {
+                navigator.navigateToTab(Route.TopLevel.ProfileTab)
+        }) {
+            Text(text = "Navigate to tab (profile) ")
+        }
+
+        Button(onClick = {
+                navigator.navigateAndClearBackStack(Route.TopLevel.ProfileTab)
+        }) {
+            Text(text = "Navigate to (profile) and clear back stack")
+        }
+
+
+        Button(onClick = {
+                navigator.navigateUp()
+        }) {
+            Text(text = "Navigate up")
+        }
+
+        Button(onClick = {
+                navigator.navigateTo(Route.Screen.LanguageScreen)
+        }) {
+            Text(text = "Go Language Screen")
+        }
     }
 }
 

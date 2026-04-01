@@ -58,6 +58,10 @@ sealed interface Route {
         data object ProfileScreen : Screen {
             override val nav: String = "profile"
         }
+
+        data object LanguageScreen : Screen {
+            override val nav: String = "language"
+        }
     }
 
     sealed interface TopLevel : Route {
@@ -74,4 +78,3 @@ sealed interface Route {
         }
     }
 }
-

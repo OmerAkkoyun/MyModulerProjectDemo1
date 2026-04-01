@@ -11,16 +11,14 @@ interface Navigator {
 
     fun navigateTo(route: Route)
 
-    fun navigateToRoute(routeString: String)
+    fun navigateByRouteName(routeString: String)
 
-    fun navigateToTab(route: Route)
-
-    fun replace(route: Route)
+    fun navigateToTab(route: Route.TopLevel)
 
     fun navigateUp()
 
     fun popUpTo(route: Route, inclusive: Boolean)
 
-    fun clearBackStackAndNavigate(route: Route)
+    fun navigateAndClearBackStack(route: Route)
 
 }

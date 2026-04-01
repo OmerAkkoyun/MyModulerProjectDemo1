@@ -12,14 +12,14 @@ import com.omerakkoyun.feature.settings.navigation.settingsTabGraph
  * Created by Omer AKKOYUN on 29.03.2026.
  */
 fun NavGraphBuilder.mainGraph(
-    onNavigate: (Route.Screen) -> Unit
+    navigator: Navigator,
 ) {
     navigation(
         route = Route.Graph.MainGraph.nav,
         startDestination = Route.Graph.HomeGraph.nav
     ) {
-        homeTabGraph()
-        settingsTabGraph(onNavigate = onNavigate)
+        homeTabGraph(navigator = navigator)
+        settingsTabGraph(navigator = navigator)
         profileTabGraph()
     }
 }

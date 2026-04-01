@@ -19,16 +19,12 @@ class NavigatorImpl : Navigator {
         _navigationCommands.tryEmit(NavigationCommands.NavigateTo(route))
     }
 
-    override fun navigateToRoute(routeString: String) {
-        _navigationCommands.tryEmit(NavigationCommands.NavigateToRoute(routeString))
+    override fun navigateByRouteName(routeString: String) {
+        _navigationCommands.tryEmit(NavigationCommands.NavigateByRouteName(routeString))
     }
 
-    override fun navigateToTab(route: Route) {
+    override fun navigateToTab(route: Route.TopLevel) {
         _navigationCommands.tryEmit(NavigationCommands.NavigateToTab(route))
-    }
-
-    override fun replace(route: Route) {
-        _navigationCommands.tryEmit(NavigationCommands.Replace(route))
     }
 
     override fun navigateUp() {
@@ -39,7 +35,7 @@ class NavigatorImpl : Navigator {
         _navigationCommands.tryEmit(NavigationCommands.PopUpTo(route, inclusive))
     }
 
-    override fun clearBackStackAndNavigate(route: Route) {
-        _navigationCommands.tryEmit(NavigationCommands.ClearBackStackAndNavigate(route))
+    override fun navigateAndClearBackStack(route: Route) {
+        _navigationCommands.tryEmit(NavigationCommands.NavigateAndClearBackStack(route))
     }
 }
