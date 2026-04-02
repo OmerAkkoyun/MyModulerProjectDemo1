@@ -1,5 +1,6 @@
 package com.omerakkoyun.core.navigation
 
+import android.os.Parcelable
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -41,5 +42,19 @@ class NavigatorImpl : Navigator {
 
     override fun navigateAndClearBackStack(route: Route) {
         _navigationCommands.tryEmit(NavigationCommands.NavigateAndClearBackStack(route))
+    }
+
+    override fun navigateWithParcelable(
+        routeString: String,
+        key: String,
+        value: Parcelable
+    ) {
+        _navigationCommands.tryEmit(
+            NavigationCommands.NavigateWithParcelable(
+                routeString = routeString,
+                key = key,
+                value = value
+            )
+        )
     }
 }

@@ -1,5 +1,6 @@
 package com.omerakkoyun.core.navigation
 
+import android.os.Parcelable
 import kotlinx.coroutines.flow.SharedFlow
 
 /**
@@ -22,4 +23,9 @@ interface Navigator {
 
     fun navigateAndClearBackStack(route: Route)
 
+    fun navigateWithParcelable(
+        routeString: String,
+        key: String,
+        value: Parcelable
+    )
 }

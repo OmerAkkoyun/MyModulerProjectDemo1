@@ -64,5 +64,9 @@ fun NavHostController.handle(command: NavigationCommands) {
                 command.inclusive
             )
         }
+
+        is NavigationCommands.NavigateWithParcelable -> {
+
+        }
     }
 }

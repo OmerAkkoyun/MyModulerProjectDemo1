@@ -1,5 +1,7 @@
 package com.omerakkoyun.core.navigation
 
+import com.omerakkoyun.core.navigation.Route.Screen.LanguageScreen.ARG_CODE
+
 /**
  * Created by Omer AKKOYUN on 28.03.2026.
  */
@@ -58,8 +60,10 @@ sealed interface Route {
         }
 
         data object LanguageScreen : Screen {
-            override val nav: String = "language/{code}"
-            fun buildNav(code: String): String = "language/$code"
+            const val ARG_CODE = "code"
+            override val nav: String = "language/{$ARG_CODE}"
+
+            fun buildNav(code: String): String = "language/${code}"
         }
 
         // Profile Screens

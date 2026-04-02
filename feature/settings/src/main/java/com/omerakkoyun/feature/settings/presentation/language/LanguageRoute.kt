@@ -16,7 +16,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun LanguageRoute(
     navigator: Navigator,
-    viewModel: LanguageViewModel = koinViewModel()
+    viewModel: LanguageViewModel = koinViewModel() // inject viewmodel and get backStackEntry if have arguments
 ) {
     LaunchedEffect(viewModel) {
         // todo: Handle

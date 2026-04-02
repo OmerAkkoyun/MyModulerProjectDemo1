@@ -1,5 +1,6 @@
 package com.omerakkoyun.feature.settings.navigation
 
+import androidx.compose.runtime.remember
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 
@@ -8,11 +9,13 @@ import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.omerakkoyun.core.navigation.Navigator
 import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.feature.settings.data.UserUiModel
 import com.omerakkoyun.feature.settings.presentation.main.SettingsRoute
 import com.omerakkoyun.feature.settings.presentation.account.AccountSettingsScreen
 import com.omerakkoyun.feature.settings.presentation.language.LanguageRoute
 import com.omerakkoyun.feature.settings.presentation.language.LanguageScreen
 import com.omerakkoyun.feature.settings.presentation.notification.NotificationsScreen
+
 
 /**
  * Created by Omer AKKOYUN on 28.03.2026.
@@ -39,10 +42,12 @@ fun NavGraphBuilder.settingsTabGraph(
         composable(
             route = Route.Screen.LanguageScreen.nav, // "language/{code}"
             arguments = listOf(
-                navArgument("code") { type = NavType.StringType }
+                navArgument(Route.Screen.LanguageScreen.ARG_CODE) {
+                    type = NavType.StringType
+                }
             )
         ) {
-            LanguageRoute(navigator = navigator)
+            LanguageRoute(navigator = navigator) // saved the "code" argument in the back stack entry
         }
 
     }

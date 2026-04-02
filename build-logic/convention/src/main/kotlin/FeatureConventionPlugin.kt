@@ -13,6 +13,7 @@ class FeatureConventionPlugin : Plugin<Project> {
         with(target) {
             pluginManager.apply("myplugin.android.library")
             pluginManager.apply("myplugin.android.compose")
+            pluginManager.apply("kotlin-parcelize")
 
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
