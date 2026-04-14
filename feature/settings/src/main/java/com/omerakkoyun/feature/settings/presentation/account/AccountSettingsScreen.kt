@@ -12,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.omerakkoyun.core.navigation.Navigator
+import com.omerakkoyun.core.navigation.ProfileGraph
 import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.core.navigation.RouteLanguageScreen
 
 /**
  * Created by Omer AKKOYUN on 30.03.2026.
@@ -38,13 +40,13 @@ fun AccountSettingsScreen(
         AccountItem(title = "Phone", value = "+1 234 567 890")
         AccountItem(title = "Password", value = "********")
         Button(onClick = {
-                navigator.navigateToTab(Route.Graph.ProfileGraph)
+                navigator.navigateToTab(ProfileGraph)
         }) {
             Text(text = "Navigate to tab (profile) ")
         }
 
         Button(onClick = {
-                navigator.navigateAndClearBackStack(Route.Graph.ProfileGraph)
+                navigator.navigateAndClearBackStack(ProfileGraph)
         }) {
             Text(text = "Navigate to (profile) and clear back stack")
         }
@@ -57,7 +59,7 @@ fun AccountSettingsScreen(
         }
 
         Button(onClick = {
-                navigator.navigateTo(Route.Screen.LanguageScreen)
+                navigator.navigateTo(RouteLanguageScreen(code = "TR"))
         }) {
             Text(text = "Go Language Screen")
         }

@@ -11,6 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.omerakkoyun.core.navigation.Navigator
 import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.core.navigation.RouteSettingsScreen
 import com.omerakkoyun.feature.settings.presentation.uimodel.LanguageUiModel
 
 /**
@@ -26,7 +27,7 @@ fun LanguageScreen(uiModel: LanguageUiModel,navigator: Navigator) {
             Text(text = "data pass -> code: ${uiModel.code}, from settings list screen", color = androidx.compose.material3.MaterialTheme.colorScheme.onError)
             Button( onClick = {
                 navigator.popUpTo(
-                    route = Route.Screen.SettingsScreen,
+                    route = RouteSettingsScreen,
                     inclusiveRemoveTargetRoute = false
                 )
             }) {

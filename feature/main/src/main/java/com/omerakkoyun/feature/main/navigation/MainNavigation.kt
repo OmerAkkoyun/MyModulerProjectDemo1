@@ -2,8 +2,9 @@ package com.omerakkoyun.feature.main.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.navigation
+import com.omerakkoyun.core.navigation.HomeGraph
+import com.omerakkoyun.core.navigation.MainGraph
 import com.omerakkoyun.core.navigation.Navigator
-import com.omerakkoyun.core.navigation.Route
 import com.omerakkoyun.feature.home.navigation.homeTabGraph
 import com.omerakkoyun.feature.profile.navigation.profileTabGraph
 import com.omerakkoyun.feature.settings.navigation.settingsTabGraph
@@ -14,9 +15,8 @@ import com.omerakkoyun.feature.settings.navigation.settingsTabGraph
 fun NavGraphBuilder.mainGraph(
     navigator: Navigator,
 ) {
-    navigation(
-        route = Route.Graph.MainGraph.nav,
-        startDestination = Route.Graph.HomeGraph.nav
+    navigation<MainGraph>(
+        startDestination = HomeGraph
     ) {
         homeTabGraph(navigator = navigator)
         settingsTabGraph(navigator = navigator)

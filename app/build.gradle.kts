@@ -2,15 +2,13 @@ plugins {
     id("myplugin.android.application")
     id("myplugin.android.compose")
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
     namespace = "com.omerakkoyun.mymodulerproject.app"
 
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
 
     kotlin {
         compilerOptions {
@@ -48,6 +46,9 @@ dependencies {
     // Koin (Application seviyesinde)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+
+    // Serialization
+    implementation(libs.kotlinx.serialization.json)
 
     // Debug
     debugImplementation(libs.androidx.compose.ui.tooling)

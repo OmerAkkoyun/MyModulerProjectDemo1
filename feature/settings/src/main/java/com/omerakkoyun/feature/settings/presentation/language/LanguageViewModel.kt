@@ -11,7 +11,7 @@ class LanguageViewModel(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    val code: String = checkNotNull(savedStateHandle[Route.Screen.LanguageScreen.ARG_CODE])
 
-    fun getLanguageCode(): String = code
+
+    fun getLanguageCode(): String = "code"
 }

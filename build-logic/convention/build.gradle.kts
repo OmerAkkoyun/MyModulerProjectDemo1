@@ -17,8 +17,9 @@ repositories {
 }
 
 dependencies {
-    compileOnly("com.android.tools.build:gradle:8.5.2")
-    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21")
+    compileOnly("com.android.tools.build:gradle:8.9.3")
+    compileOnly("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.20")
+    implementation("org.jetbrains.kotlin:kotlin-serialization:2.3.20")
 }
 
 gradlePlugin {

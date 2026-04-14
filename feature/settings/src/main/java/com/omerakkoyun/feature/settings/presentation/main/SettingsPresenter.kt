@@ -3,14 +3,16 @@ package com.omerakkoyun.feature.settings.presentation.main
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.omerakkoyun.core.navigation.Navigator
-import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.core.navigation.RouteAccountScreen
+import com.omerakkoyun.core.navigation.RouteLanguageScreen
+import com.omerakkoyun.core.navigation.RouteNotificationsScreen
 import org.koin.androidx.compose.koinViewModel
 
 /**
  * Created by Omer AKKOYUN on 30.03.2026.
  */
 @Composable
-fun SettingsRoute(
+fun SettingsPresenter(
     navigator: Navigator,
     viewModel: SettingsViewModel = koinViewModel()
 ) {
@@ -18,15 +20,13 @@ fun SettingsRoute(
         viewModel.effects.collect { effect ->
             when (effect) {
                 SettingsEffect.NavigateToAccount ->
-                    navigator.navigateTo(Route.Screen.AccountScreen)
+                    navigator.navigateTo(RouteAccountScreen)
 
                 SettingsEffect.NavigateToNotifications ->
-                    navigator.navigateTo(Route.Screen.Notifications)
+                    navigator.navigateTo(RouteNotificationsScreen)
 
                 is SettingsEffect.NavigateToLanguage ->
-                    navigator.navigateToWithArgs(
-                        Route.Screen.LanguageScreen.buildNav(effect.code) //  örN: "language/tr"
-                    )
+                    navigator.navigateTo(RouteLanguageScreen(effect.code))
 
             }
         }

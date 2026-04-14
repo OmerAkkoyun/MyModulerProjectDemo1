@@ -10,5 +10,6 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.koin.core)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 }
 

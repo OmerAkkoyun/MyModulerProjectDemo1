@@ -1,6 +1,7 @@
 package com.omerakkoyun.feature.startup.presentation
 
 import androidx.lifecycle.ViewModel
+import com.omerakkoyun.core.navigation.MainGraph
 import com.omerakkoyun.core.navigation.Navigator
 import com.omerakkoyun.core.navigation.Route
 
@@ -16,6 +17,6 @@ import com.omerakkoyun.core.navigation.Route
         fun testGoMain() {
             // Complete onboarding and go to HomeGraph (root of main feature)
             // Using clearBackStack so onboarding cannot be re-entered via back button.
-            navigator.navigateAndClearBackStack(Route.Graph.MainGraph)
+            navigator.navigateAndClearBackStack(MainGraph)
         }
     }

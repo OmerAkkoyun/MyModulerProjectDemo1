@@ -16,7 +16,7 @@ import org.koin.androidx.compose.koinViewModel
  */
 
 @Composable
-fun StartupScreen(viewModel: StartupViewModel = koinViewModel()) {
+fun StartupPresenter(viewModel: StartupViewModel = koinViewModel()) {
     Box(
         modifier = Modifier.fillMaxSize().background(color = androidx.compose.material3.MaterialTheme.colorScheme.tertiary),
         contentAlignment = Alignment.Center

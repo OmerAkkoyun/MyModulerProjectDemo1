@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import com.omerakkoyun.core.navigation.getCurrentRouteString
 import com.omerakkoyun.feature.main.navigation.BottomNavItem
 
 /**
@@ -34,7 +35,7 @@ fun MainContainer(
                     items.forEach { item ->
                         val selected = currentDestination
                             ?.hierarchy
-                            ?.any { destination -> destination.route == item.route.nav } == true
+                            ?.any { destination -> destination.getCurrentRouteString() == item.route.routeName } == true
 
                         NavigationBarItem(
                             selected = selected,

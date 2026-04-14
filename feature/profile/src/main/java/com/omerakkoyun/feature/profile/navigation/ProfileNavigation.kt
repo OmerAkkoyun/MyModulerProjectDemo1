@@ -3,7 +3,8 @@ package com.omerakkoyun.feature.profile.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.core.navigation.ProfileGraph
+import com.omerakkoyun.core.navigation.RouteProfileScreen
 import com.omerakkoyun.feature.profile.presentation.main.ProfileScreen
 
 /**
@@ -11,11 +12,10 @@ import com.omerakkoyun.feature.profile.presentation.main.ProfileScreen
  */
 
 fun NavGraphBuilder.profileTabGraph() {
-    navigation(
-        route = Route.Graph.ProfileGraph.nav,
-        startDestination = Route.Screen.ProfileScreen.nav
+    navigation<ProfileGraph>(
+        startDestination = RouteProfileScreen
     ) {
-        composable(Route.Screen.ProfileScreen.nav) {
+        composable<RouteProfileScreen> {
             ProfileScreen()
         }
     }

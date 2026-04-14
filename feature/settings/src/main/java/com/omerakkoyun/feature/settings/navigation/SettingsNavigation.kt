@@ -1,20 +1,21 @@
 package com.omerakkoyun.feature.settings.navigation
 
-import androidx.compose.runtime.remember
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavType
 
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import androidx.navigation.toRoute
+import com.omerakkoyun.core.navigation.RouteAccountScreen
 import com.omerakkoyun.core.navigation.Navigator
-import com.omerakkoyun.core.navigation.Route
-import com.omerakkoyun.feature.settings.data.UserUiModel
-import com.omerakkoyun.feature.settings.presentation.main.SettingsRoute
+import com.omerakkoyun.core.navigation.SettingsGraph
+import com.omerakkoyun.core.navigation.RouteSettingsScreen
+import com.omerakkoyun.core.navigation.RouteLanguageScreen
+import com.omerakkoyun.core.navigation.RouteNotificationsScreen
+import com.omerakkoyun.feature.settings.presentation.main.SettingsPresenter
 import com.omerakkoyun.feature.settings.presentation.account.AccountSettingsScreen
-import com.omerakkoyun.feature.settings.presentation.language.LanguageRoute
-import com.omerakkoyun.feature.settings.presentation.language.LanguageScreen
+import com.omerakkoyun.feature.settings.presentation.language.LanguagePresenter
 import com.omerakkoyun.feature.settings.presentation.notification.NotificationsScreen
+import com.omerakkoyun.feature.settings.presentation.uimodel.LanguageUiModel
 
 
 /**
@@ -23,32 +24,28 @@ import com.omerakkoyun.feature.settings.presentation.notification.NotificationsS
 fun NavGraphBuilder.settingsTabGraph(
     navigator: Navigator
 ) {
-    navigation(
-        route = Route.Graph.SettingsGraph.nav,
-        startDestination = Route.Screen.SettingsScreen.nav
+    navigation<SettingsGraph>(
+        startDestination = RouteSettingsScreen
     ) {
-        composable(Route.Screen.SettingsScreen.nav) {
-            SettingsRoute(navigator)
+        composable<RouteSettingsScreen> {
+            SettingsPresenter(navigator)
         }
 
-        composable(Route.Screen.AccountScreen.nav) {
+        composable<RouteAccountScreen> {
             AccountSettingsScreen(navigator)
         }
 
-        composable(Route.Screen.Notifications.nav) {
+        composable<RouteNotificationsScreen> {
             NotificationsScreen()
         }
 
-        composable(
-            route = Route.Screen.LanguageScreen.nav, // "language/{code}"
-            arguments = listOf(
-                navArgument(Route.Screen.LanguageScreen.ARG_CODE) {
-                    type = NavType.StringType
-                }
-            )
-        ) {
-            LanguageRoute(navigator = navigator) // saved the "code" argument in the back stack entry
-        }
+        composable< RouteLanguageScreen> {
+            val args = it.toRoute<RouteLanguageScreen>()
 
+            LanguagePresenter(
+                uiModel = LanguageUiModel(code = args.code),
+                navigator = navigator
+            )
+        }
     }
 }

@@ -3,10 +3,6 @@ package com.omerakkoyun.feature.settings.presentation.language
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.omerakkoyun.core.navigation.Navigator
-import com.omerakkoyun.core.navigation.Route
-import com.omerakkoyun.feature.settings.presentation.main.SettingsEffect
-import com.omerakkoyun.feature.settings.presentation.main.SettingsScreen
-import com.omerakkoyun.feature.settings.presentation.main.SettingsViewModel
 import com.omerakkoyun.feature.settings.presentation.uimodel.LanguageUiModel
 import org.koin.androidx.compose.koinViewModel
 
@@ -14,9 +10,10 @@ import org.koin.androidx.compose.koinViewModel
  * Created by Omer AKKOYUN on 30.03.2026.
  */
 @Composable
-fun LanguageRoute(
+fun LanguagePresenter(
+    uiModel : LanguageUiModel,
     navigator: Navigator,
-    viewModel: LanguageViewModel = koinViewModel() // inject viewmodel and get backStackEntry if have arguments
+    viewModel: LanguageViewModel = koinViewModel()
 ) {
     LaunchedEffect(viewModel) {
         // todo: Handle
@@ -24,7 +21,7 @@ fun LanguageRoute(
 
     //  todo test
     LanguageScreen(
-        uiModel = LanguageUiModel(viewModel.getLanguageCode()),
+        uiModel = uiModel,
         navigator = navigator
     )
 }

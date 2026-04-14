@@ -7,7 +7,10 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.omerakkoyun.core.navigation.HomeGraph
+import com.omerakkoyun.core.navigation.ProfileGraph
 import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.core.navigation.SettingsGraph
 import com.omerakkoyun.mymodulerproject.feature.main.R
 
 /**
@@ -20,24 +23,24 @@ import com.omerakkoyun.mymodulerproject.feature.main.R
 sealed class BottomNavItem(
     @StringRes val labelRes: Int,
     val icon: ImageVector,
-    val route: Route.Graph
+    val route: Route
 ) {
     data object HomeTab : BottomNavItem(
         labelRes = R.string.bottom_home ,
         icon = Icons.Default.Home,
-        route = Route.Graph.HomeGraph
+        route = HomeGraph
     )
 
     data object SettingsTab : BottomNavItem(
         labelRes = R.string.bottom_settings,
         icon = Icons.Default.Settings,
-        route = Route.Graph.SettingsGraph
+        route = SettingsGraph
     )
 
     data object ProfileTab : BottomNavItem(
         labelRes = R.string.bottom_profile,
         icon = Icons.Default.Person,
-        route = Route.Graph.ProfileGraph
+        route = ProfileGraph
     )
 
     companion object {

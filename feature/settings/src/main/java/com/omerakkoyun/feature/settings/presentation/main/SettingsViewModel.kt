@@ -2,15 +2,14 @@ package com.omerakkoyun.feature.settings.presentation.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.omerakkoyun.feature.settings.data.UserUiModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
-
 /**
  * Created by Omer AKKOYUN on 30.03.2026.
  */
+
 class SettingsViewModel : ViewModel() {
 
     private val _effects = MutableSharedFlow<SettingsEffect>()

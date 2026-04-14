@@ -5,14 +5,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.omerakkoyun.core.navigation.Navigator
-import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.core.navigation.StartupGraph
+import com.omerakkoyun.core.navigation.handle
+import com.omerakkoyun.core.navigation.shouldShowBottomBar
 import com.omerakkoyun.feature.main.navigation.mainGraph
 import com.omerakkoyun.feature.main.presentation.MainContainer
 import com.omerakkoyun.feature.startup.navigation.startupGraph
@@ -36,27 +36,20 @@ fun AppNavHost(
         }
     }
 
+
     MainContainer(
         currentDestination = currentDestination,
         showBottomBar = currentDestination.shouldShowBottomBar(),
-        onTabSelected = { item ->
-            navHostController.navigate(item.route.nav) {
-                popUpTo(navHostController.graph.findStartDestination().id) {
-                    saveState = true
-                }
-                launchSingleTop = true
-                restoreState = true
+        onTabSelected = { navigator.navigateToTab(it.route) },
+        modifier = Modifier.padding(top = paddingValues.calculateTopPadding()),
+        content = {
+            NavHost(
+                navController = navHostController,
+                startDestination = StartupGraph
+            ) {
+                startupGraph()
+                mainGraph(navigator = navigator)
             }
-        },
-        modifier = Modifier.padding(top = paddingValues.calculateTopPadding())
-    ) {
-        NavHost(
-            navController = navHostController,
-            startDestination = Route.Graph.StartupGraph.nav,
-            route = Route.Graph.RootGraph.nav
-        ) {
-            startupGraph()
-            mainGraph(navigator)
         }
-    }
+    )
 }
