@@ -1,6 +1,5 @@
 package com.omerakkoyun.feature.main.presentation
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -27,18 +26,21 @@ fun MainContainer(
 ) {
     val items = BottomNavItem.items
 
+    fun isSelected(item: BottomNavItem): Boolean {
+        return currentDestination
+            ?.hierarchy
+            ?.any { destination -> destination.getCurrentRouteString() == item.route.routeName } == true
+    }
+
     Scaffold(
         modifier = modifier,
         bottomBar = {
             if (showBottomBar){
                 NavigationBar {
                     items.forEach { item ->
-                        val selected = currentDestination
-                            ?.hierarchy
-                            ?.any { destination -> destination.getCurrentRouteString() == item.route.routeName } == true
 
                         NavigationBarItem(
-                            selected = selected,
+                            selected = isSelected(item),
                             onClick = { onTabSelected(item) },
                             icon = {
                                 Icon(
