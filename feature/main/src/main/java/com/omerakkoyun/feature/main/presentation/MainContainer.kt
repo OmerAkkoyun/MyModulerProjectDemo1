@@ -10,7 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.omerakkoyun.core.navigation.getCurrentRouteString
+import com.omerakkoyun.core.navigation.hasRoute
+import com.omerakkoyun.core.navigation.toRouteString
 import com.omerakkoyun.feature.main.navigation.BottomNavItem
 
 /**
@@ -27,9 +28,7 @@ fun MainContainer(
     val items = BottomNavItem.items
 
     fun isSelected(item: BottomNavItem): Boolean {
-        return currentDestination
-            ?.hierarchy
-            ?.any { destination -> destination.getCurrentRouteString() == item.route.routeName } == true
+        return currentDestination.hasRoute(item.route)
     }
 
     Scaffold(

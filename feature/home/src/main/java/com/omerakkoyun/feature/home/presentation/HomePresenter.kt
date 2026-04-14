@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.omerakkoyun.core.navigation.Navigator
 import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.core.navigation.RouteNotificationsScreen
 import com.omerakkoyun.core.navigation.RouteStartupScreen
 import org.koin.androidx.compose.koinViewModel
 
@@ -17,8 +18,8 @@ fun HomePresenter(navigator: Navigator, viewModel: HomeViewModel = koinViewModel
     LaunchedEffect(viewModel) {
         viewModel.effects.collect {  effect ->
             when (effect) {
-                is HomeUiEffect.NavigateToX -> navigator.navigateTo(RouteStartupScreen)
-                is HomeUiEffect.NavigateToY -> navigator.navigateTo(RouteStartupScreen)
+                is HomeUiEffect.NavigateToX -> navigator.navigateTo(RouteNotificationsScreen)
+                is HomeUiEffect.NavigateToY -> navigator.navigateTo(RouteNotificationsScreen)
             }
         }
     }

@@ -24,7 +24,7 @@ fun HomeScreen(onNavigateToX: () -> Unit, onNavigateToY: () -> Unit) {
         Button(onClick = {
             onNavigateToX()
         }) {
-            Text("Go to Profile", color = Color.White)
+            Text("Go to Route Notifications Screen", color = Color.White)
         }
     }
 }

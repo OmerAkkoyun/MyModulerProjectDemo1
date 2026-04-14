@@ -1,6 +1,7 @@
 package com.omerakkoyun.core.navigation
 
 import androidx.navigation.NavDestination
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 
@@ -9,13 +10,16 @@ import androidx.navigation.NavHostController
  */
 
 private val bottomBarVisibleRoutes = setOf(
-    RouteHomeScreen.routeName,
-    RouteSettingsScreen.routeName,
-    RouteProfileScreen.routeName,
+    RouteHomeScreen.toRouteString(),
+    RouteSettingsScreen.toRouteString(),
+    RouteProfileScreen.toRouteString(),
 )
 
 fun NavDestination?.shouldShowBottomBar(): Boolean {
-    return this.getCurrentRouteString() in bottomBarVisibleRoutes
+    return this
+        ?.hierarchy
+        ?.any { it.route in bottomBarVisibleRoutes } == true
+
 }
 
 
@@ -62,6 +66,14 @@ fun NavHostController.handle(command: NavigationCommands) {
     }
 }
 
-fun NavDestination?.getCurrentRouteString(): String {
-    return this?.route?.substringAfterLast(".").orEmpty()
+
+fun Route.toRouteString(): String {
+    return requireNotNull(this::class.qualifiedName) {
+        "Route must have a qualifiedName"
+    }
+}
+
+fun NavDestination?.hasRoute(route: Route): Boolean {
+    val routeString = route.toRouteString()
+    return this?.hierarchy?.any { it.route == routeString } == true
 }
