@@ -29,7 +29,7 @@ class SettingsViewModel : ViewModel() {
 
     fun onLanguageClick() {
         viewModelScope.launch {
-            _effects.emit(SettingsEffect.NavigateToLanguage("TR"))
+            _effects.emit(SettingsEffect.NavigateToLanguage("ENG"))
         }
     }
 }

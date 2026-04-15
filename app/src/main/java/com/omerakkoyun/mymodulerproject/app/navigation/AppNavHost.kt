@@ -11,8 +11,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.omerakkoyun.core.navigation.Navigator
 import com.omerakkoyun.core.navigation.StartupGraph
-import com.omerakkoyun.core.navigation.handle
-import com.omerakkoyun.core.navigation.shouldShowBottomBar
 import com.omerakkoyun.feature.main.navigation.mainGraph
 import com.omerakkoyun.feature.main.presentation.MainContainer
 import com.omerakkoyun.feature.startup.navigation.startupGraph

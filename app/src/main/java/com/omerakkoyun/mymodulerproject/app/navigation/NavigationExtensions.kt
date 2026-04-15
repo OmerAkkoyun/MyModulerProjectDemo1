@@ -1,9 +1,14 @@
-package com.omerakkoyun.core.navigation
+package com.omerakkoyun.mymodulerproject.app.navigation
 
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import com.omerakkoyun.core.navigation.NavigationCommands
+import com.omerakkoyun.core.navigation.Route
+import com.omerakkoyun.core.navigation.RouteHomeScreen
+import com.omerakkoyun.core.navigation.RouteProfileScreen
+import com.omerakkoyun.core.navigation.RouteSettingsScreen
 
 /**
  * Created by Omer AKKOYUN on 1.04.2026.
@@ -60,9 +65,10 @@ fun NavHostController.handle(command: NavigationCommands) {
             )
         }
 
-        else -> {
-        //TODO
+        is NavigationCommands.NavigateByRouteName -> {
+            // todo deep link
         }
+
     }
 }
 
@@ -71,9 +77,4 @@ fun Route.toRouteString(): String {
     return requireNotNull(this::class.qualifiedName) {
         "Route must have a qualifiedName"
     }
-}
-
-fun NavDestination?.hasRoute(route: Route): Boolean {
-    val routeString = route.toRouteString()
-    return this?.hierarchy?.any { it.route == routeString } == true
 }

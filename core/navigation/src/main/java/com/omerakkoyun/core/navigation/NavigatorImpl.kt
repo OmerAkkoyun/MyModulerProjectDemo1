@@ -1,6 +1,5 @@
 package com.omerakkoyun.core.navigation
 
-import android.os.Parcelable
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -24,10 +23,6 @@ class NavigatorImpl : Navigator {
         _navigationCommands.tryEmit(NavigationCommands.NavigateByRouteName(routeString))
     }
 
-    override fun navigateToWithArgs(routeString: String) {
-        _navigationCommands.tryEmit(NavigationCommands.NavigateToWithArgs(routeString))
-    }
-
     override fun navigateToTab(route: Route) {
         _navigationCommands.tryEmit(NavigationCommands.NavigateToTab(route))
     }
@@ -36,25 +31,11 @@ class NavigatorImpl : Navigator {
         _navigationCommands.tryEmit(NavigationCommands.NavigateUp)
     }
 
-    override fun popUpTo(route: Route, inclusive: Boolean) {
-        _navigationCommands.tryEmit(NavigationCommands.PopUpTo(route, inclusive))
+    override fun popUpTo(route: Route, inclusiveRemoveTargetRoute: Boolean) {
+        _navigationCommands.tryEmit(NavigationCommands.PopUpTo(route, inclusiveRemoveTargetRoute))
     }
 
     override fun navigateAndClearBackStack(route: Route) {
         _navigationCommands.tryEmit(NavigationCommands.NavigateAndClearBackStack(route))
-    }
-
-    override fun navigateWithParcelable(
-        routeString: String,
-        key: String,
-        value: Parcelable
-    ) {
-        _navigationCommands.tryEmit(
-            NavigationCommands.NavigateWithParcelable(
-                routeString = routeString,
-                key = key,
-                value = value
-            )
-        )
     }
 }

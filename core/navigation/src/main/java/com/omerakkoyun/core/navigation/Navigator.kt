@@ -1,6 +1,5 @@
 package com.omerakkoyun.core.navigation
 
-import android.os.Parcelable
 import kotlinx.coroutines.flow.SharedFlow
 
 /**
@@ -13,8 +12,6 @@ interface Navigator {
 
     fun navigateByRouteName(routeString: String)
 
-    fun navigateToWithArgs(routeString: String)
-
     fun navigateToTab(route: Route)
 
     fun navigateUp()
@@ -22,10 +19,4 @@ interface Navigator {
     fun popUpTo(route: Route, inclusiveRemoveTargetRoute: Boolean)
 
     fun navigateAndClearBackStack(route: Route)
-
-    fun navigateWithParcelable(
-        routeString: String,
-        key: String,
-        value: Parcelable
-    )
 }
