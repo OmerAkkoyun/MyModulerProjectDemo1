@@ -6,7 +6,7 @@ package com.omerakkoyun.core.navigation
  */
 sealed class NavigationCommands {
     data class NavigateTo(val route: Route) : NavigationCommands()
-    data class NavigateByRouteName(val routeString: String) : NavigationCommands()
+    data class NavigateAndReplaceStack(val routes: List<Route>) : NavigationCommands()
     data class NavigateToTab(val route: Route) : NavigationCommands()
     data class PopUpTo(val route: Route, val inclusive: Boolean) : NavigationCommands()
     data object NavigateUp : NavigationCommands()

@@ -19,8 +19,8 @@ class NavigatorImpl : Navigator {
         _navigationCommands.tryEmit(NavigationCommands.NavigateTo(route))
     }
 
-    override fun navigateByRouteName(routeString: String) {
-        _navigationCommands.tryEmit(NavigationCommands.NavigateByRouteName(routeString))
+    override fun navigateAndReplaceStack(vararg routes: Route) {
+        _navigationCommands.tryEmit(NavigationCommands.NavigateAndReplaceStack(routes.toList()))
     }
 
     override fun navigateToTab(route: Route) {

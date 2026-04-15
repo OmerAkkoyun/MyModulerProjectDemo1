@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.omerakkoyun.feature.startup.data.Detail
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -16,17 +17,34 @@ import org.koin.androidx.compose.koinViewModel
  */
 
 @Composable
-fun StartupPresenter(viewModel: StartupViewModel = koinViewModel()) {
+fun StartupPresenter(
+    action1: () -> Unit,
+    action2: () -> Unit,
+    deepLinkDetail: Detail? = null,
+    viewModel: StartupViewModel = koinViewModel()
+) {
     Box(
-        modifier = Modifier.fillMaxSize().background(color = androidx.compose.material3.MaterialTheme.colorScheme.tertiary),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = androidx.compose.material3.MaterialTheme.colorScheme.tertiary),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Startup Screen 2 sec Loading...")
+        if (deepLinkDetail != null) {
+            Text(text = "Startup Screen with deep link: ${deepLinkDetail.description}")
+        } else {
+            Text(text = "Startup Screen without deep link")
+        }
+
     }
 
     LaunchedEffect(Unit) {
-        // Simulate some startup work, e.g., loading data or checking authentication
         kotlinx.coroutines.delay(2000L) // Simulate a delay for demonstration
-        viewModel.testGoMain() // todo test
+        if (deepLinkDetail == null || deepLinkDetail.id == 0) {
+            action1()
+        } else {
+            // Deep link'ten geldiyse, belki detail'e git veya main'e geç yada notification'a git gibi bir durum olabilir
+            action2()
+        }
+        // force update kontrol yapılabilir vsvs.
     }
 }

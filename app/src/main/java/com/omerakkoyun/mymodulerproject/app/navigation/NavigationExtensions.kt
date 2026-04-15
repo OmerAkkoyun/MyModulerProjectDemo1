@@ -65,8 +65,18 @@ fun NavHostController.handle(command: NavigationCommands) {
             )
         }
 
-        is NavigationCommands.NavigateByRouteName -> {
-            // todo deep link
+        is NavigationCommands.NavigateAndReplaceStack -> {
+            // Tüm back stack'i temizle
+            popBackStack(0, true)
+
+            // Her bir route'u sırayla ekle
+            command.routes.forEach { route ->
+                navigate(route) {
+                    launchSingleTop = true
+                }
+            }
+            // ornekler:  Profile -> Settings -> Home (back stack bu sırayla olur)
+            //navigator.navigateAndReplaceStack(ProfileGraph, SettingsGraph, HomeGraph)
         }
 
     }

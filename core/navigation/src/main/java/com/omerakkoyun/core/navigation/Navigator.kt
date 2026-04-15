@@ -10,7 +10,7 @@ interface Navigator {
 
     fun navigateTo(route: Route)
 
-    fun navigateByRouteName(routeString: String)
+    fun navigateAndReplaceStack(vararg routes: Route)
 
     fun navigateToTab(route: Route)
 

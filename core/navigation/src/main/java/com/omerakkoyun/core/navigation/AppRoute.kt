@@ -14,7 +14,7 @@ sealed interface Route {
 @Serializable data object SettingsGraph:Route
 @Serializable data object ProfileGraph:Route
 
-@Serializable data object RouteStartupScreen:Route
+
 @Serializable data object RouteHomeScreen:Route
 @Serializable data object RouteSettingsScreen:Route
 @Serializable data object RouteAccountScreen:Route
@@ -23,3 +23,6 @@ sealed interface Route {
 
 @Serializable
 data class RouteLanguageScreen(val code: String):Route
+
+@Serializable
+data class RouteStartupScreen(val id: Int = 0, val description: String = "") : Route

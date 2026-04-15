@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -22,9 +23,9 @@ import com.omerakkoyun.feature.startup.navigation.startupGraph
 @Composable
 fun AppNavHost(
     navigator: Navigator,
-    paddingValues: PaddingValues
+    paddingValues: PaddingValues,
+    navHostController: NavHostController = rememberNavController()
 ) {
-    val navHostController = rememberNavController()
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
@@ -45,7 +46,7 @@ fun AppNavHost(
                 navController = navHostController,
                 startDestination = StartupGraph
             ) {
-                startupGraph()
+                startupGraph(navigator = navigator)
                 mainGraph(navigator = navigator)
             }
         }
